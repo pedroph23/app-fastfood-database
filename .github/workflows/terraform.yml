@@ -1,0 +1,50 @@
+name: Deploy DocumentDB
+
+on:
+  push:
+    branches:
+      - main  # Personalize de acordo com sua ramificação principal
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.6.2  
+        
+    - name: Configure AWS credentials
+      run: |
+        echo ${{ secrets.AWS_ACCESS_KEY_ID }} > aws_access_key_id
+        echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} > aws_secret_access_key
+        terraform login
+      env:
+        AWS_REGION: us-east-1 
+    
+    - name: Entrando no diretorio /terraform
+      run: cd /terraform
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Plan
+      run: terraform plan -input=false -out=tfplan
+
+    - name: Terraform Apply
+      run: terraform apply -input=false tfplan
+      continue-on-error: true
+
+    - name: Terraform Show
+      run: terraform show
+
+    - name: Terraform Destroy
+      run: |
+        terraform destroy -input=false -auto-approve
+        rm -f aws_access_key_id
+        rm -f aws_secret_access_key
+      continue-on-error: true
