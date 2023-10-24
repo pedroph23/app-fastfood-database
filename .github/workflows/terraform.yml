@@ -26,8 +26,8 @@ jobs:
       env:
         AWS_REGION: us-east-1 
     
-    - name: Entrando no diretorio /terraform
-      run: cd /terraform
+    # - name: Entrando no diretorio /terraform
+    #   run: cd /terraform
 
     - name: Terraform Init
       run: terraform init
