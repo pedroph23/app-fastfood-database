@@ -1,14 +1,14 @@
 name: Deploy DocumentDB
 
 on:
-  push:
+  pull_request:
     branches:
       - main  # Personalize de acordo com sua ramificação principal
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Clonado o repositorio
       uses: actions/checkout@v2
