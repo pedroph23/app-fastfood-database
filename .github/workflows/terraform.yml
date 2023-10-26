@@ -9,6 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      DB_USERNAME: ${{ secrets.AWS_DOCUMENTDB_USER }}
+      DB_PASSWORD: ${{ secrets.AWS_DOCUMENTDB_PASSWORD }}
+
     steps:
     - name: Clonado o repositorio
       uses: actions/checkout@v2
@@ -28,6 +32,11 @@ jobs:
     
     # - name: Entrando no diretorio /terraform
     #   run: cd /terraform
+
+    - name: Set environment variables for Terraform
+      run: |
+        export TF_VAR_db_username=$DB_USERNAME
+        export TF_VAR_db_password=$DB_PASSWORD
 
     - name: Terraform Init
       run: terraform init
