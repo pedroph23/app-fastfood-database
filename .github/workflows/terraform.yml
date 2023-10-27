@@ -1,7 +1,7 @@
 name: Deploy DocumentDB
 
 on:
-  pull_request:
+  push:
     branches:
       - main  # Personalize de acordo com sua ramificação principal
 
