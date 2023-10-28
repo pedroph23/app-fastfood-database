@@ -30,7 +30,7 @@ resource "aws_security_group" "this" {
 
 # Cria o cluster do DocumentDB
 resource "aws_docdb_cluster" "document_db" {
-  cluster_identifier     = "fastfood-docdb-cluster"
+  cluster_identifier     = "fastfood-docdb2-cluster"
   engine                 = "docdb"
   master_username        = var.db_username
   master_password        = var.db_password
