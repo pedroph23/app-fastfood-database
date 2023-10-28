@@ -42,7 +42,7 @@ resource "aws_docdb_cluster" "document_db" {
 # Cria a instancia do DocumentDB
 resource "aws_docdb_cluster_instance" "cluster_instances" {
   count              = 1
-  identifier         = "fastfood-db-instance-${count.index}"
+  identifier         = "fastfood-db2-instance-${count.index}"
   cluster_identifier = aws_docdb_cluster.document_db.id
   instance_class     = "db.t3.medium"
 }
