@@ -5,6 +5,10 @@ on:
     branches:
       - main  # Personalize de acordo com sua ramificação principal
 
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,12 +23,10 @@ jobs:
         terraform_version: 1.6.2  
         
     - name: Confugurando Credenciais da AWS
-      run: |
-        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws configure set default.region us-east-1
-      env:
-        AWS_REGION: us-east-1 
+      uses: aws-actions/configure-aws-credentials@v4.0.1
+      with:
+        role-to-assume: arn:aws:iam::101478099523:role/deploy_lambda_dynamo
+        aws-region: us-east-1 # Substitua pela sua região
     
     - name: Set environment variables for Terraform
       run: |
