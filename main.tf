@@ -1,6 +1,6 @@
 resource "aws_docdb_subnet_group" "default" {
  name      = "aws_documentsdb_subnets_groups"
- subnet_ids = ["subnet-00284258966405cf4", "subnet-00284258966405cf4"] # your private subnet IDs
+ subnet_ids = ["subnet-00284258966405cf4", "subnet-03ee8d741c1bf8645"] # your private subnet IDs
 }
 
 resource "aws_security_group" "this" {
