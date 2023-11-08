@@ -4,7 +4,7 @@ resource "aws_docdb_subnet_group" "default" {
 }
 
 resource "aws_security_group" "this" {
- name       = "security_group_documentdb_fastfood"
+ name       = "security_group_documentdb_fastfoods"
  description = "Allow inbound traffic"
 
  vpc_id = "vpc-033482dbcf507bd17" # your EKS VPC ID
