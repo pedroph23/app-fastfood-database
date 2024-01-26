@@ -1,5 +1,5 @@
 resource "aws_docdb_subnet_group" "default" {
- name      = "aws_appfastfood_subnets_groups"
+ name      = "aws_bdocumentsdb_subnets_groups"
  subnet_ids = ["subnet-0df3426b76db09446", "subnet-06743e5d38fc5e51e"] # your private subnet IDs
 }
 
@@ -30,7 +30,7 @@ resource "aws_docdb_cluster" "document_db" {
  master_username      = var.db_username
  master_password      = var.db_password
  skip_final_snapshot  = true
- db_subnet_group_name = "aws_appfastfood_subnets_group"
+ db_subnet_group_name = "aws_bdocumentsdb_subnets_groups"
  vpc_security_group_ids = [aws_security_group.this.id]
 }
 
