@@ -1,13 +1,13 @@
 resource "aws_docdb_subnet_group" "default" {
  name      = "aws_bdocumentsdb_subnets_groups"
- subnet_ids = ["subnet-00284258966405cf4", "subnet-03ee8d741c1bf8645"] # your private subnet IDs
+ subnet_ids = ["subnet-0bade542721b95bb6", "subnet-007472babc1055dbe"] # your private subnet IDs
 }
 
 resource "aws_security_group" "this" {
  name       = "security_group_documentdb_fastfoods"
  description = "Allow inbound traffic"
 
- vpc_id = "vpc-033482dbcf507bd17" # your EKS VPC ID
+ vpc_id = "vpc-0053416b6659e068d" # your EKS VPC ID
 
  ingress {
   from_port = 27017
